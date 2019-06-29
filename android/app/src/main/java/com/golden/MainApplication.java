@@ -3,6 +3,7 @@ package com.golden;
 import android.app.Application;
 import com.skyward.NotificationManager.NotificationManager;
 import com.facebook.react.ReactApplication;
+import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
 import io.branch.rnbranch.RNBranchPackage;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
@@ -18,7 +19,6 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.imagepicker.ImagePickerPackage;
-import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 import com.rnfs.RNFSPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.rngoldenkeystore.RNGoldenKeystorePackage;
@@ -49,6 +49,7 @@ public class MainApplication extends Application implements ReactApplication, Sh
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new RNReactNativeHapticFeedbackPackage(),
             new RNMixpanel(),
             new RNBranchPackage(),
             new RNViewShotPackage(),
@@ -59,7 +60,6 @@ public class MainApplication extends Application implements ReactApplication, Sh
                     new RandomBytesPackage(),
                     new KeychainPackage(),
                     new ImagePickerPackage(),
-                    new RNReactNativeHapticFeedbackPackage(),
                     new RNFSPackage(),
                     new FIRMessagingPackage(),
                     new FabricPackage(),

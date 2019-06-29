@@ -51,7 +51,7 @@
     "react-native-fcm": "^16.0.0",
     "react-native-flip-card": "^3.5.2",
     "react-native-fs": "^2.11.15",
-    "react-native-haptic-feedback": "^1.2.0",
+    "react-native-haptic-feedback": "^1.4.0",
     "react-native-image-picker": "^0.26.10",
     "react-native-keyboard-aware-scroll-view": "^0.6.0",
     "react-native-keychain": "^3.0.0-rc.3",
