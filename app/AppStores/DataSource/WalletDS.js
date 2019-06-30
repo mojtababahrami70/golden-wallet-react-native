@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native'
-import { ETHWallet, BTCWallet } from '../stores/Wallet'
+import { ETHWallet, BTCWallet, CcaWallet } from '../stores/Wallet'
 import NavStore from '../NavStore'
 import SecureDS from './SecureDS'
 
@@ -14,6 +14,7 @@ class WalletDataSource {
 
     this.wallets = JSON.parse(walletsStr).map((js) => {
       if (js.type === 'ethereum') return new ETHWallet(js)
+      if (js.type === 'counoscoin') return new CcaWallet(js)
       return new BTCWallet(js)
     })
     return this.wallets

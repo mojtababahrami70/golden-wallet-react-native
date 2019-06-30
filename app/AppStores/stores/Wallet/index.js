@@ -1,4 +1,5 @@
 import BtcWallet from './Wallet.btc'
+import CCAWallet from './Wallet.cca'
 import EthWallet from './Wallet'
 import Keystore from '../../../../Libs/react-native-golden-keystore'
 import WalletDS from '../../DataSource/WalletDS'
@@ -15,6 +16,11 @@ export const generateNew = async (secureDS, title, index = 0, path = Keystore.Co
     return new EthWallet({
       address, balance: '0', index, title, isFetchingBalance: true
     }, secureDS)
+  }
+  if (coin === chainNames.CCA) {
+      return new CCAWallet({
+          address, balance: '0', index, title, isFetchingBalance: true
+      }, secureDS)
   }
   return new BtcWallet({
     address, balance: '0', index, title, isFetchingBalance: true
@@ -82,3 +88,4 @@ export const getWalletsFromMnemonic = async (mnemonic, path = Keystore.CoinType.
 
 export const BTCWallet = BtcWallet
 export const ETHWallet = EthWallet
+export const CcaWallet = CCAWallet

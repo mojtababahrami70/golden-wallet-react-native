@@ -52,6 +52,19 @@ export default class WalletTypeCreateScreen extends Component {
     })
   }
 
+  gotoEnterNameCCA = () => {
+    if (!this.isReady) {
+      return
+    }
+    if (MainStore.appState.config.network !== 'mainnet') {
+      NavStore.popupCustom.show('You need change network to main net to create BTC Wallet')
+      return
+    }
+    NavStore.pushToScreen('EnterNameScreen', {
+      coin: chainNames.CCA
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -71,6 +84,16 @@ export default class WalletTypeCreateScreen extends Component {
             title="Bitcoin"
             imageCard={images.imgCardBTC}
             onPress={this.gotoEnterNameBTC}
+            imageBackground="backgroundCard"
+            titleTextStyle={{ color: AppStyle.mainColor }}
+            subtitleTextStyle={{ color: AppStyle.secondaryTextColor, marginTop: 4, fontSize: 16 }}
+          />
+
+          <SmallCard
+            style={{ height: 214 }}
+            title="Counos Coin CCA"
+            imageCard={images.imgCardBTC}
+            onPress={this.gotoEnterNameCCA}
             imageBackground="backgroundCard"
             titleTextStyle={{ color: AppStyle.mainColor }}
             subtitleTextStyle={{ color: AppStyle.secondaryTextColor, marginTop: 4, fontSize: 16 }}

@@ -3,6 +3,10 @@ const networks = {
     name: 'bitcoin',
     path: "m/49'/0'/0'/0/index"
   },
+  CCA: {
+    name: 'counoscoin',
+    path: "m/0'/0'/index"
+  },
   ETH: {
     name: 'ethereum',
     path: "m/44'/60'/0'/0/index"

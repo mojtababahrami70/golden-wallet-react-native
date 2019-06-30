@@ -22,10 +22,13 @@ class AppState {
   @observable addressBooks = []
   @observable rateETHDollar = new BigNumber(0)
   @observable rateBTCDollar = new BigNumber(0)
+  @observable rateCCADollar = new BigNumber(0)
   @observable hasPassword = false
   @observable didBackup = false
   currentWalletIndex = 0
   currentBTCWalletIndex = 0
+  currentCCAWalletIndex = 0
+  currentCCAWalletIndex = 0
   @observable internetConnection = 'online' // online || offline
   @observable unpendTransactions = []
   @observable gasPriceEstimate = {
@@ -56,6 +59,7 @@ class AppState {
     Reactions.auto.listenConnection(this)
     this.getRateETHDollar()
     this.getRateBTCDollar()
+    this.getRateCCADollar()
     this.getGasPriceEstimate()
   }
 
@@ -127,6 +131,11 @@ class AppState {
     this.save()
   }
 
+  @action setCurrentCCAWalletIndex(index) {
+    this.currentCCAWalletIndex = index
+    this.save()
+  }
+
   @action async getRateETHDollar() {
     setTimeout(async () => {
       if (this.internetConnection === 'online') {
@@ -148,6 +157,17 @@ class AppState {
       if (rate.PRICE != this.rateBTCDollar) {
         this.rateBTCDollar = new BigNumber(rate.PRICE)
       }
+    }, 100)
+  }
+
+  @action async getRateCCADollar() {
+    setTimeout(async () => {
+      //const rs = await api.fetchRateCCADollar()
+      //const rate = rs.data && rs.data.RAW && rs.data.RAW.CCA && rs.data.RAW.CCA.USD
+
+      //if (rate.PRICE != this.rateCCADollar) {
+        this.rateCCADollar = new BigNumber(2.3)
+      //}
     }, 100)
   }
 
@@ -190,6 +210,7 @@ class AppState {
     this.didBackup = data.didBackup
     this.currentWalletIndex = data.currentWalletIndex || 0
     this.currentBTCWalletIndex = data.currentBTCWalletIndex || 0
+    this.currentCCAWalletIndex = data.currentCCAWalletIndex || 0
     const addressBooks = await AddressBookDS.getAddressBooks()
     this.addressBooks = addressBooks
     this.shouldShowUpdatePopup = data.shouldShowUpdatePopup !== undefined ? data.shouldShowUpdatePopup : true
@@ -205,6 +226,7 @@ class AppState {
 
     this.rateETHDollar = new BigNumber(data.rateETHDollar || 0)
     this.rateBTCDollar = new BigNumber(data.rateBTCDollar || 0)
+    this.rateCCADollar = new BigNumber(data.rateCCADollar || 0)
     this.gasPriceEstimate = data.gasPriceEstimate
   }
 
@@ -262,8 +284,10 @@ class AppState {
       hasPassword: this.hasPassword,
       rateETHDollar: this.rateETHDollar.toString(10),
       rateBTCDollar: this.rateBTCDollar.toString(10),
+      rateCCADollar: this.rateCCADollar.toString(10),
       currentWalletIndex: this.currentWalletIndex,
       currentBTCWalletIndex: this.currentBTCWalletIndex,
+      currentCCAWalletIndex: this.currentCCAWalletIndex,
       didBackup: this.didBackup,
       gasPriceEstimate: this.gasPriceEstimate,
       enableNotification: this.enableNotification,

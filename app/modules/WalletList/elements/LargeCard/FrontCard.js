@@ -59,6 +59,9 @@ export default class FrontCard extends Component {
     if (type === 'ethereum') {
       return 'ETH'
     }
+    else if (type === 'counoscoin') {
+      return 'CCA'
+    }
     return 'BTC'
   }
 
@@ -110,6 +113,14 @@ export default class FrontCard extends Component {
     const balanceUSDSecret = !isHide
       ? `$${Helper.formatUSD(totalBalanceDollar.toString(10))}`
       : constant.SECRET_WORK
+
+      let img_source = images.imgCardBTC;
+      if(type === 'ethereum')
+          img_source = images.imgCardETH;
+      else if(type === 'counoscoin')
+          img_source = images.imgCardCCA;
+
+      //let img_source = type === 'ethereum' ? images.imgCardETH : images.imgCardBTC;
     return (
       <TouchableWithoutFeedback
         style={[styles.container, { backgroundColor: backgroundCard }, style]}
@@ -158,7 +169,7 @@ export default class FrontCard extends Component {
                 height: type === 'ethereum' ? cardHeight * 0.31 : cardHeight * 0.35
               }
             }
-            source={type === 'ethereum' ? images.imgCardETH : images.imgCardBTC}
+            source={img_source}
           />
           <Text style={[styles.balance]}>{balanceSecret}</Text>
           <Text style={[styles.balanceUSD, { marginBottom: 6 }]}>{balanceUSDSecret}</Text>
