@@ -233,6 +233,10 @@ export default class HomeScreen extends Component {
     const { selectedWallet } = MainStore.appState
     if (selectedWallet.type === 'ethereum') {
       NavStore.pushToScreen('TokenScreen', { index })
+    }
+    else if (selectedWallet.type === 'counoscoin') {
+        MainStore.appState.setselectedToken(selectedWallet.tokens[0])
+        NavStore.pushToScreen('TransactionCCAListScreen')
     } else {
       MainStore.appState.setselectedToken(selectedWallet.tokens[0])
       NavStore.pushToScreen('TransactionBTCListScreen')

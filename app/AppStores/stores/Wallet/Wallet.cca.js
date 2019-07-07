@@ -32,6 +32,7 @@ export default class WalletCCA extends Wallet {
 
   constructor(obj, secureDS) {
     super(obj, secureDS)
+      console.log(this.path)
     this.secureDS = secureDS
     const initObj = Object.assign({}, defaultObjWallet, obj) // copy
     this._validateData(initObj)
@@ -64,14 +65,14 @@ export default class WalletCCA extends Wallet {
         this.balance = new BigNumber(`0`)
         this.totalBalance = this.balance
       } else if (res.data) {
-        this.balance = new BigNumber(`${res.data.final_balance}`)
+        this.balance = new BigNumber(`${res.data.balanceSat}`)
         this.totalBalance = this.balance.times(new BigNumber('1e-8'))
       } else {
         this.balance = new BigNumber(`0`)
         this.totalBalance = this.balance
       }
       this.tokens = [this.getTokenCCA()]
-      this.tokens[0].transactions = res.data.txs.map(tx => new TransactionCCA(tx, 1))
+      this.tokens[0].transactions = res.data.transactions.map(tx => new TransactionCCA(tx, 1))
       this.update()
       this.offLoading()
     } catch (e) {

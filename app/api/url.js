@@ -31,5 +31,9 @@ export default {
   BlockChainInfo: {
     apiURL: () => `https://blockchain.info`,
     webURL: () => `https://www.blockchain.com`
+  },
+  CounosCoinInfo: {
+    apiURL: () => `http://blockex.csc.counos.org/insight-lite-api`,
+    webURL: () => `http://blockex.csc.counos.org`
   }
 }

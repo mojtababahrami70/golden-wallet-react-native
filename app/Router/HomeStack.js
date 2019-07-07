@@ -12,6 +12,7 @@ import ExportPrivateKeyScreen from '../modules/Setting/screen/ExportPrivateKeySc
 import TokenScreen from '../modules/WalletDetail/screen/TokenScreen'
 import TransactionListScreen from '../modules/TransactionList/screen/TransactionListScreen'
 import TransactionBTCListScreen from '../modules/TransactionList/screen/TransactionListScreen.btc'
+import TransactionCCAListScreen from '../modules/TransactionList/screen/TransactionListScreen.cca'
 import PrivacyTermsWebView from '../modules/Setting/screen/PrivacyTermsWebView'
 import ImplementPrivateKeyScreen from '../modules/WalletImport/screen/ImplementPrivateKeyScreen'
 import AddressBookScreen from '../modules/AddressBook/screen/AddressBookScreen'
@@ -104,6 +105,12 @@ const HomeStack = StackNavigator(
     },
     TransactionBTCListScreen: {
       screen: TransactionBTCListScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    TransactionCCAListScreen: {
+      screen: TransactionCCAListScreen,
       navigationOptions: {
         header: null
       }

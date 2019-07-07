@@ -45,6 +45,11 @@ export const fetchWalletBTCInfo = (address) => {
   return caller.get(url, {}, true)
 }
 
+export const fetchWalletCCAInfo = (address) => {
+  const url = `${URL.CounosCoinInfo.apiURL()}/addr/${address}`
+  return caller.get(url, {}, true)
+}
+
 export const fetchRateETHDollar = () => {
   const data = {
     fsyms: 'ETH',

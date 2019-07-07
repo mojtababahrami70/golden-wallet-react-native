@@ -10,19 +10,19 @@ export default class TransactionCCA extends Transaction {
     super(obj, token, status)
     this.rate = MainStore.appState.rateCCADollar
     this.timeStamp = obj.time
-    this.hash = obj.hash
-    this.from = obj.inputs.map(i => i.prev_out.addr)
-    this.to = obj.out.map(o => o.addr)
+    this.hash = obj.blockhash
+    this.from = obj.vin.map(i => i.addr)
+    this.to = obj.vout.map(o => o.addr)
     this.tokenName = 'counoscoin'
     this.tokenSymbol = 'CCA'
     this.decimal = 8
-    this.gas = new BigNumber(`${obj.weight}`)
-    this.gasPrice = new BigNumber(`1`)
-    this.gasUsed = new BigNumber(`${obj.weight}`)
+    //this.gas = new BigNumber(`${obj.weight}`)
+    //this.gasPrice = new BigNumber(`1`)
+    //this.gasUsed = new BigNumber(`${obj.weight}`)
     this.status = 1
     this.value = new BigNumber(`0`)
-    this.out = obj.out
-    this.inputs = obj.inputs
+    this.out = obj.vout
+    this.inputs = obj.vin
   }
 
   get value() {
@@ -31,8 +31,8 @@ export default class TransactionCCA extends Transaction {
     if (this.isSent) {
       let s = new BigNumber(`0`)
       for (let i = 0; i < this.inputs.length; i++) {
-        if (address === this.inputs[i].prev_out.addr) {
-          s = s.plus(new BigNumber(`${this.inputs[i].prev_out.value}`))
+        if (address === this.inputs[i].addr) {
+          s = s.plus(new BigNumber(`${this.inputs[i].value}`))
         }
       }
       return s
@@ -103,7 +103,7 @@ export default class TransactionCCA extends Transaction {
   }
 
   get balance() {
-    return this.value.dividedBy(new BigNumber(`1.0e+8`))
+    return this.value.dividedBy(new BigNumber(`1`))
   }
 
   get balanceUSD() {
